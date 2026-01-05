@@ -1,29 +1,69 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const items = computed(() => [{
-  label: 'Docs',
-  to: '/docs',
-  active: route.path.startsWith('/docs')
-}, {
-  label: 'Pricing',
-  to: '/pricing'
-}, {
-  label: 'Blog',
-  to: '/blog'
-}, {
-  label: 'Changelog',
-  to: '/changelog'
-}])
+const items = computed(() => [
+  {
+    label: 'Accueil',
+    to: '/home',
+    active: route.path.startsWith('/home')
+  },
+  {
+    label: 'DGML',
+    active: route.path.startsWith('/dgml'),
+    children: [
+      {
+        label: 'Mot du Directeur',
+        to: '/dgml/mot-du-directeur'
+      },
+      {
+        label: 'Organisation',
+        to: '/dgml/organisation'
+      },
+      {
+        label: 'Missions',
+        to: '/dgml/missions'
+      }
+    ]
+  },
+  {
+    label: 'Actualités',
+    to: '/blog'
+  },
+  {
+    label: 'Documenthèque',
+    to: '/documentheque'
+  },
+  {
+    label: 'Directions',
+    active: route.path.startsWith('/directions'),
+    children: [
+      {
+        label: 'Direction Financière',
+        to: '/directions/finance'
+      },
+      {
+        label: 'Direction RH',
+        to: '/directions/rh'
+      },
+      {
+        label: 'Direction IT',
+        to: '/directions/it'
+      }
+    ]
+  },
+  {
+    label: 'Contact',
+    to: '/contact'
+  }
+])
 </script>
 
 <template>
   <UHeader>
     <template #left>
       <NuxtLink to="/">
-        <AppLogo class="w-auto h-6 shrink-0" />
+        <AppLogo class="w-auto h-8 lg:h-10 shrink-0" />
       </NuxtLink>
-      <TemplateMenu />
     </template>
 
     <UNavigationMenu
@@ -33,30 +73,6 @@ const items = computed(() => [{
 
     <template #right>
       <UColorModeButton />
-
-      <UButton
-        icon="i-lucide-log-in"
-        color="neutral"
-        variant="ghost"
-        to="/login"
-        class="lg:hidden"
-      />
-
-      <UButton
-        label="Sign in"
-        color="neutral"
-        variant="outline"
-        to="/login"
-        class="hidden lg:inline-flex"
-      />
-
-      <UButton
-        label="Sign up"
-        color="neutral"
-        trailing-icon="i-lucide-arrow-right"
-        class="hidden lg:inline-flex"
-        to="/signup"
-      />
     </template>
 
     <template #body>
