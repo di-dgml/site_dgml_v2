@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="animate-fade-in mb-7">
+  <div class="animate-fade-in -mt-25 -mb-25">
     <UPageSection class="animate-slide-in-up">
       <!-- max-w-5xl  -->
       <div class="mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
