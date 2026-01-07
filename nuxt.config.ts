@@ -9,10 +9,6 @@ export default defineNuxtConfig({
     'nuxt-og-image'
   ],
 
-  eslint: {
-    failOnError: false,
-  },
-
   devtools: {
     enabled: true
   },
