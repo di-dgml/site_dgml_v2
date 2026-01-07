@@ -42,14 +42,6 @@ const orgData = {
   image: 'https://www.dgml.bj/wp-content/uploads/2023/07/DGML2-768x768.jpg.webp',
   children: [
     {
-      id: 'secretariat-dgml',
-      name: 'Secrétariat Particulier',
-      title: 'Secrétariat DGML',
-      subtitle: 'Rattaché directement au DGML',
-      image: '',
-      children: []
-    },
-    {
       id: 'dgaml',
       name: 'À définir',
       title: 'Directeur Général Adjoint',
@@ -62,26 +54,7 @@ const orgData = {
           title: 'Chef de la Cellule Contrôle Interne de la Qualité',
           subtitle: 'CCIQ',
           image: '',
-          children: [
-            {
-              id: 'smr',
-              name: 'Service de Maîtrise des Risques',
-              title: 'SMR',
-              children: [
-                { id: 'dmcr', name: 'Division Cartographie des Risques', title: 'DMCR', children: [] },
-                { id: 'dsr', name: 'Division Surveillance et Revue', title: 'DSR', children: [] }
-              ]
-            },
-            {
-              id: 'ssrc',
-              name: 'Service Suivi des Normes et Qualité',
-              title: 'SSRC',
-              children: [
-                { id: 'dsn', name: 'Division Suivi des Normes', title: 'DSN', children: [] },
-                { id: 'dq', name: 'Division de la Qualité', title: 'DQ', children: [] }
-              ]
-            }
-          ]
+          children: []
         },
         {
           id: 'cerc',
@@ -89,24 +62,7 @@ const orgData = {
           title: 'Chef de la Cellule Études, Réformes et Contentieux',
           subtitle: 'CERC',
           image: '',
-          children: [
-            {
-              id: 'ser',
-              name: 'Service des Études et Réformes',
-              title: 'SER',
-              children: [
-                { id: 'drgba', name: 'Division Réformes Bâtiments', title: 'DRGBA', children: [] },
-                { id: 'drcm', name: 'Division Réformes Comptabilité', title: 'DRCM', children: [] },
-                { id: 'drgem', name: 'Division Réformes Équipements', title: 'DRGEM', children: [] }
-              ]
-            },
-            {
-              id: 'spc',
-              name: 'Service Plaintes et Contentieux',
-              title: 'SPC',
-              children: []
-            }
-          ]
+          children: []
         },
         {
           id: 'dmcm',
@@ -114,27 +70,7 @@ const orgData = {
           title: 'Directeur du Matériel et Comptabilité',
           subtitle: 'DMCM',
           image: '',
-          children: [
-            {
-              id: 'sgmm',
-              name: 'Service Gestion Matériels',
-              title: 'SGMM',
-              children: [
-                { id: 'damm', name: 'Division Acquisitions', title: 'DAMM', children: [] },
-                { id: 'drmm', name: 'Division Réforme', title: 'DRMM', children: [] }
-              ]
-            },
-            {
-              id: 'scm',
-              name: 'Service Comptabilité Matières',
-              title: 'SCM',
-              children: [
-                { id: 'dstcm', name: 'Division Suivi Comptabilité', title: 'DSTCM', children: [] },
-                { id: 'dinv', name: 'Division Inventaires', title: 'DInv', children: [] },
-                { id: 'dfat', name: 'Division Formations', title: 'DFAT', children: [] }
-              ]
-            }
-          ]
+          children: []
         },
         {
           id: 'dpib',
@@ -142,27 +78,7 @@ const orgData = {
           title: 'Directeur du Patrimoine Immobilier',
           subtitle: 'DPIB',
           image: '',
-          children: [
-            {
-              id: 'str',
-              name: 'Service des Travaux',
-              title: 'STr',
-              children: [
-                { id: 'drba', name: 'Division Réfections', title: 'DRBA', children: [] },
-                { id: 'drl', name: 'Division Réparations', title: 'DRL', children: [] },
-                { id: 'deat', name: 'Division Études Technique', title: 'DEAT', children: [] }
-              ]
-            },
-            {
-              id: 'sbe',
-              name: 'Service Bâtiments État',
-              title: 'SBE',
-              children: [
-                { id: 'dgbe', name: 'Division Gestion Bâtiments', title: 'DGBE', children: [] },
-                { id: 'dpse', name: 'Division Prospection Sites', title: 'DPSE', children: [] }
-              ]
-            }
-          ]
+          children: []
         },
         {
           id: 'dgca',
@@ -170,26 +86,7 @@ const orgData = {
           title: 'Directeur du Garage Central',
           subtitle: 'DGCA',
           image: '',
-          children: [
-            {
-              id: 'set',
-              name: 'Service Études Techniques',
-              title: 'SET',
-              children: [
-                { id: 'des', name: 'Division Études Statistiques', title: 'DES', children: [] },
-                { id: 'dal', name: 'Division Acquisitions', title: 'DAL', children: [] }
-              ]
-            },
-            {
-              id: 'spca',
-              name: 'Service Parc Central',
-              title: 'SPCA',
-              children: [
-                { id: 'dvpc', name: 'Division Véhicules', title: 'DVPC', children: [] },
-                { id: 'dspsr', name: 'Division Suivi Parcs', title: 'DSPSR', children: [] }
-              ]
-            }
-          ]
+          children: []
         },
         {
           id: 'dgr',
@@ -197,58 +94,29 @@ const orgData = {
           title: 'Directeur Gestion des Ressources',
           subtitle: 'DGR',
           image: '',
-          children: [
-            {
-              id: 'sap',
-              name: 'Service Administratif Personnel',
-              title: 'SAP',
-              children: [
-                { id: 'dsa', name: 'Division Secrétariat', title: 'DSA', children: [] },
-                { id: 'druc', name: 'Division Relations Usagers', title: 'DRU/C', children: [] },
-                { id: 'dgp', name: 'Division Gestion Personnel', title: 'DGP', children: [] }
-              ]
-            },
-            {
-              id: 'sbc',
-              name: 'Service Budget Comptabilité',
-              title: 'SBC',
-              children: [
-                { id: 'dpseb', name: 'Division Budget', title: 'DPSEB', children: [] },
-                { id: 'ddb', name: 'Division Dépenses Bâtiments', title: 'DDB', children: [] }
-              ]
-            }
-          ]
+          children: []
         },
         {
           id: 'di',
           name: 'À définir',
-          title: 'Directeur de l\'Informatique',
+          title: "Directeur de l'Informatique",
           subtitle: 'DI',
           image: '',
-          children: [
-            {
-              id: 'sglabd',
-              name: 'Service Génie Logiciel',
-              title: 'SGLABD',
-              children: [
-                { id: 'ded', name: 'Division Études Documentation', title: 'DED', children: [] },
-                { id: 'dd', name: 'Division Développement', title: 'DD', children: [] }
-              ]
-            },
-            {
-              id: 'seon',
-              name: 'Service Exploitation Numérique',
-              title: 'SEON',
-              children: [
-                { id: 'def', name: 'Division Études Formations', title: 'DEF', children: [] },
-                { id: 'dds', name: 'Division Déploiement', title: 'DDS', children: [] }
-              ]
-            }
-          ]
+          children: []
         }
       ]
     }
   ]
+}
+
+// Secrétariat directement rattaché au DGML (affiché à côté)
+const secretariat = {
+  id: 'secretariat-dgml',
+  name: 'À définir',
+  title: 'Secrétariat Particulier',
+  subtitle: 'Secrétariat DGML',
+  image: '',
+  children: []
 }
 
 const getBgColor = (level: number) => {
@@ -269,26 +137,19 @@ const getSize = (level: number) => {
 <template>
   <div class="animate-fade-in">
     <UPageSection class="animate-slide-in-up pt-0">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-7xl mx-auto px-4">
         <!-- Header -->
         <div class="text-center mb-12 scroll-reveal">
-          <div class="inline-flex items-center gap-3 bg-gradient-to-r from-[#0B5433] to-[#5D73AD] text-white rounded-full px-6 py-3 shadow-lg mb-6">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              />
+          <div
+            class="inline-flex items-center gap-3 bg-gradient-to-r from-[#0B5433] to-[#5D73AD] text-white rounded-full px-6 py-3 shadow-lg mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <span class="text-sm font-semibold">Organisation</span>
           </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0B5433] to-[#5D73AD] mb-4">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0B5433] to-[#5D73AD] mb-4">
             Organigramme de la DGML
           </h1>
           <p class="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -297,21 +158,19 @@ const getSize = (level: number) => {
         </div>
 
         <!-- Organigramme -->
-        <div class="overflow-x-auto pb-8 scroll-reveal delay-200">
-          <div class="min-w-max flex justify-center">
-            <!-- Fonction récursive pour afficher les noeuds -->
-            <div class="flex flex-col items-center">
-              <!-- DGML (niveau 0) -->
-              <div :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(0).card, 'min-w-[280px] max-w-[320px]']">
+        <div class="pb-8 scroll-reveal delay-200">
+          <div class="w-full">
+            <!-- Niveau 1: DGML (centré) -->
+            <div class="flex flex-col items-center mb-12">
+              <!-- DGML -->
+              <div
+                :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(0).card, 'w-full max-w-[350px]']">
                 <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(0), 'rounded-t-xl']" />
 
                 <div class="flex items-start gap-4 mt-2">
                   <div :class="[getSize(0).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                    <img
-                      :src="orgData.image || 'https://via.placeholder.com/150'"
-                      :alt="orgData.name"
-                      class="w-full h-full object-cover"
-                    >
+                    <img :src="orgData.image || 'https://via.placeholder.com/150'" :alt="orgData.name"
+                      class="w-full h-full object-cover">
                   </div>
 
                   <div class="flex-1 min-w-0">
@@ -321,10 +180,7 @@ const getSize = (level: number) => {
                     <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
                       {{ orgData.title }}
                     </p>
-                    <p
-                      v-if="orgData.subtitle"
-                      class="text-xs text-gray-500 italic line-clamp-1"
-                    >
+                    <p v-if="orgData.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
                       {{ orgData.subtitle }}
                     </p>
                   </div>
@@ -332,146 +188,193 @@ const getSize = (level: number) => {
 
                 <button
                   class="mt-3 w-full flex items-center justify-center gap-2 text-sm text-[#0B5433] hover:text-[#5D73AD] transition-colors py-2 border-t border-gray-100"
-                  @click="toggleNode(orgData.id)"
-                >
-                  <svg
-                    v-if="isExpanded(orgData.id)"
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
+                  @click="toggleNode(orgData.id)">
+                  <svg v-if="isExpanded(orgData.id)" class="w-4 h-4" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
-                  <svg
-                    v-else
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                   <span class="font-medium">
-                    {{ isExpanded(orgData.id) ? 'Masquer' : 'Voir' }} {{ orgData.children.length }} service{{ orgData.children.length > 1 ? 's' : '' }}
+                    {{ isExpanded(orgData.id) ? 'Masquer' : 'Voir' }} la structure
                   </span>
                 </button>
               </div>
 
-              <!-- Ligne de connexion -->
-              <div
-                v-if="isExpanded(orgData.id)"
-                class="w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-400"
-              />
+              <!-- Ligne verticale vers DGAML -->
+              <div v-if="isExpanded(orgData.id)" class="w-0.5 h-12 bg-gradient-to-b from-gray-300 to-gray-400" />
+            </div>
 
-              <!-- Enfants niveau 1 (Secrétariat + DGAML) -->
-              <div
-                v-if="isExpanded(orgData.id)"
-                class="relative"
-              >
-                <div
-                  v-if="orgData.children.length > 1"
-                  class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent transform -translate-y-4"
-                />
-
-                <div class="flex gap-8 flex-wrap justify-center">
-                  <div
-                    v-for="child in orgData.children"
-                    :key="child.id"
-                    class="relative"
-                  >
-                    <!-- Ligne verticale -->
+            <!-- Niveau 2: DGAML et Secrétariat (décalé) -->
+            <div v-if="isExpanded(orgData.id)" class="relative">
+              <!-- Conteneur principal -->
+              <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
+                <!-- Colonne gauche: Secrétariat (décalé vers le haut) -->
+                <div class="lg:w-1/4 flex flex-col items-center lg:items-end">
+                  <!-- Secrétariat DGML -->
+                  <div class="relative mb-8 lg:mb-0 lg:mt-[-80px]">
+                    <!-- Ligne diagonale du DGML vers le Secrétariat -->
                     <div
-                      v-if="orgData.children.length > 1"
-                      class="absolute top-0 left-1/2 w-0.5 h-8 bg-gray-300 transform -translate-x-1/2 -translate-y-8"
-                    />
+                      class="absolute top-[-50px] right-0 lg:top-[-40px] lg:right-[-120px] w-24 h-0.5 bg-gray-300 transform rotate-45 origin-right" />
 
-                    <div class="flex flex-col items-center">
-                      <!-- Carte niveau 1 -->
-                      <div :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(1).card, 'min-w-[280px] max-w-[320px]']">
-                        <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(1), 'rounded-t-xl']" />
+                    <!-- Carte Secrétariat (plus petite) -->
+                    <div
+                      :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', 'p-4', 'w-full max-w-[280px]']">
+                      <div
+                        :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-gray-500 to-gray-600', 'rounded-t-xl']" />
 
-                        <div class="flex items-start gap-4 mt-2">
-                          <div :class="[getSize(1).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                            <img
-                              :src="child.image || 'https://via.placeholder.com/150'"
-                              :alt="child.name"
-                              class="w-full h-full object-cover"
-                            >
+                      <div class="flex items-start gap-3 mt-2">
+                        <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100">
+                          <img :src="secretariat.image || 'https://via.placeholder.com/150'" :alt="secretariat.name"
+                            class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                          <h3 class="font-bold text-gray-800 text-sm mb-1 line-clamp-2">
+                            {{ secretariat.name }}
+                          </h3>
+                          <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
+                            {{ secretariat.title }}
+                          </p>
+                          <p v-if="secretariat.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
+                            {{ secretariat.subtitle }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Colonne centre: DGAML -->
+                <div class="lg:w-2/4 flex flex-col items-center">
+                  <!-- DGAML -->
+                  <div
+                    :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(1).card, 'w-full max-w-[320px] mb-8']">
+                    <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(1), 'rounded-t-xl']" />
+
+                    <div class="flex items-start gap-4 mt-2">
+                      <div :class="[getSize(1).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
+                        <img :src="orgData.children[0].image || 'https://via.placeholder.com/150'"
+                          :alt="orgData.children[0].name" class="w-full h-full object-cover">
+                      </div>
+
+                      <div class="flex-1 min-w-0">
+                        <h3 :class="['font-bold text-gray-800', getSize(1).text, 'mb-1 line-clamp-2']">
+                          {{ orgData.children[0].name }}
+                        </h3>
+                        <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
+                          {{ orgData.children[0].title }}
+                        </p>
+                        <p v-if="orgData.children[0].subtitle" class="text-xs text-gray-500 italic line-clamp-1">
+                          {{ orgData.children[0].subtitle }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button v-if="orgData.children[0].children && orgData.children[0].children.length > 0"
+                      class="mt-3 w-full flex items-center justify-center gap-2 text-sm text-[#0B5433] hover:text-[#5D73AD] transition-colors py-2 border-t border-gray-100"
+                      @click="toggleNode(orgData.children[0].id)">
+                      <svg v-if="isExpanded(orgData.children[0].id)" class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                      <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                      <span class="font-medium">
+                        {{ isExpanded(orgData.children[0].id) ? 'Masquer' : 'Voir' }} {{
+                          orgData.children[0].children.length }} directions
+                      </span>
+                    </button>
+                  </div>
+
+                  <!-- Ligne vers les directions -->
+                  <div v-if="isExpanded(orgData.children[0].id)"
+                    class="w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-400" />
+                </div>
+
+                <!-- Colonne droite: espace vide pour équilibre -->
+                <div class="lg:w-1/4 hidden lg:block" />
+              </div>
+
+              <!-- Niveau 3: Les 7 directions (sous DGAML) -->
+              <div
+                v-if="isExpanded(orgData.children[0].id) && orgData.children[0].children && orgData.children[0].children.length > 0"
+                class="mt-8">
+                <!-- Ligne horizontale au-dessus des directions -->
+                <div class="flex justify-center mb-8">
+                  <div class="w-0.5 h-4 bg-gray-300" />
+                </div>
+
+                <!-- Grille des 7 directions -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  <!-- 6 directions sur 2 lignes -->
+                  <div v-for="(direction, index) in orgData.children[0].children.slice(0, 6)" :key="direction.id"
+                    class="flex justify-center">
+                    <!-- Ligne verticale vers chaque direction -->
+                    <div class="absolute top-[-20px] left-1/2 w-0.5 h-4 bg-gray-300 transform -translate-x-1/2" />
+
+                    <!-- Carte Direction -->
+                    <div
+                      :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 w-full', getSize(2).card]">
+                      <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(2), 'rounded-t-xl']" />
+
+                      <div class="flex items-start gap-3 mt-2">
+                        <div
+                          :class="[getSize(2).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
+                          <img :src="direction.image || 'https://via.placeholder.com/150'" :alt="direction.name"
+                            class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                          <h3 :class="['font-bold text-gray-800', getSize(2).text, 'mb-1 line-clamp-2']">
+                            {{ direction.name }}
+                          </h3>
+                          <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
+                            {{ direction.title }}
+                          </p>
+                          <p v-if="direction.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
+                            {{ direction.subtitle }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 7ème direction centrée en bas -->
+                  <div class="sm:col-span-2 lg:col-span-3 xl:col-span-4 flex justify-center mt-6">
+                    <div class="relative">
+                      <!-- Ligne verticale -->
+                      <div class="absolute top-[-20px] left-1/2 w-0.5 h-4 bg-gray-300 transform -translate-x-1/2" />
+
+                      <!-- Carte de la 7ème direction -->
+                      <div
+                        :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(2).card, 'w-full max-w-[300px]']">
+                        <div
+                          :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(2), 'rounded-t-xl']" />
+
+                        <div class="flex items-start gap-3 mt-2">
+                          <div
+                            :class="[getSize(2).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
+                            <img :src="orgData.children[0].children[6].image || 'https://via.placeholder.com/150'"
+                              :alt="orgData.children[0].children[6].name" class="w-full h-full object-cover">
                           </div>
 
                           <div class="flex-1 min-w-0">
-                            <h3 :class="['font-bold text-gray-800', getSize(1).text, 'mb-1 line-clamp-2']">
-                              {{ child.name }}
+                            <h3 :class="['font-bold text-gray-800', getSize(2).text, 'mb-1 line-clamp-2']">
+                              {{ orgData.children[0].children[6].name }}
                             </h3>
                             <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                              {{ child.title }}
+                              {{ orgData.children[0].children[6].title }}
                             </p>
-                            <p
-                              v-if="child.subtitle"
-                              class="text-xs text-gray-500 italic line-clamp-1"
-                            >
-                              {{ child.subtitle }}
+                            <p v-if="orgData.children[0].children[6].subtitle"
+                              class="text-xs text-gray-500 italic line-clamp-1">
+                              {{ orgData.children[0].children[6].subtitle }}
                             </p>
                           </div>
                         </div>
-
-                        <button
-                          v-if="child.children && child.children.length > 0"
-                          class="mt-3 w-full flex items-center justify-center gap-2 text-sm text-[#0B5433] hover:text-[#5D73AD] transition-colors py-2 border-t border-gray-100"
-                          @click="toggleNode(child.id)"
-                        >
-                          <svg
-                            v-if="isExpanded(child.id)"
-                            class="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                          <svg
-                            v-else
-                            class="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                          <span class="font-medium">
-                            {{ isExpanded(child.id) ? 'Masquer' : 'Voir' }} {{ child.children.length }} {{ child.children.length > 1 ? 'directions' : 'direction' }}
-                          </span>
-                        </button>
                       </div>
-
-                      <!-- Note: Pour afficher tous les niveaux, vous devrez créer un composant récursif -->
-                      <p
-                        v-if="isExpanded(child.id) && child.children && child.children.length > 0"
-                        class="text-xs text-gray-500 mt-4 text-center italic"
-                      >
-                        {{ child.children.length }} direction(s) - Cliquez pour développer dans la vue complète
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -492,15 +395,15 @@ const getSize = (level: number) => {
             </div>
             <div class="flex items-center gap-3">
               <div class="w-12 h-3 bg-gradient-to-r from-[#3a6470] to-[#5D73AD] rounded" />
-              <span class="text-sm text-gray-600">Direction Adjointe & Cellules</span>
+              <span class="text-sm text-gray-600">Direction Générale Adjointe</span>
             </div>
             <div class="flex items-center gap-3">
               <div class="w-12 h-3 bg-gradient-to-r from-[#5D73AD] to-[#7B8DC4] rounded" />
-              <span class="text-sm text-gray-600">Directions & Services</span>
+              <span class="text-sm text-gray-600">Directions Opérationnelles</span>
             </div>
             <div class="flex items-center gap-3">
-              <div class="w-12 h-3 bg-gradient-to-r from-gray-600 to-gray-700 rounded" />
-              <span class="text-sm text-gray-600">Divisions</span>
+              <div class="w-12 h-3 bg-gradient-to-r from-gray-500 to-gray-600 rounded" />
+              <span class="text-sm text-gray-600">Secrétariat</span>
             </div>
           </div>
         </div>
@@ -530,12 +433,22 @@ const getSize = (level: number) => {
   transform: translateY(0);
 }
 
-.delay-200 { transition-delay: 0.2s; }
-.delay-400 { transition-delay: 0.4s; }
+.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.delay-400 {
+  transition-delay: 0.4s;
+}
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInUp {
@@ -543,6 +456,7 @@ const getSize = (level: number) => {
     transform: translateY(50px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -562,5 +476,42 @@ const getSize = (level: number) => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Lignes de connexion */
+.connection-line {
+  position: relative;
+}
+
+.connection-line::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #d1d5db;
+  transform: translateX(-50%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .lg\:mt-\[-80px\] {
+    margin-top: -40px;
+  }
+
+  .lg\:right-\[-120px\] {
+    right: -60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-cols-1.sm\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .sm\:col-span-2 {
+    grid-column: span 1;
+  }
 }
 </style>
