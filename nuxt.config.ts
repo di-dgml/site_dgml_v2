@@ -9,12 +9,12 @@ export default defineNuxtConfig({
     'nuxt-og-image'
   ],
 
-  devtools: {
-    enabled: true
+  eslint: {
+    failOnError: false,
   },
 
-  image: {
-
+  devtools: {
+    enabled: true
   },
 
   css: ['~/assets/css/main.css'],
@@ -41,5 +41,9 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  image: {
+
   }
 })

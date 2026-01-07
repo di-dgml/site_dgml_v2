@@ -34,8 +34,8 @@ const items = computed(() => [
     label: 'Documenthèque',
     to: '/documentheque',
     active: route.path.startsWith('/documentheque'),
-    children:[
-       {
+    children: [
+      {
         label: 'Arrêtés',
         to: '/documentheque/arretes'
       },

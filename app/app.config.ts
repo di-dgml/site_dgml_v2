@@ -1,7 +1,7 @@
 export default defineAppConfig({
   ui: {
     // Le 'emerald' se marie mieux avec le bleu nuit que le 'green' basique
-    primary: 'emerald', 
+    primary: 'emerald',
     neutral: 'slate',
 
     card: {

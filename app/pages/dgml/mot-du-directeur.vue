@@ -34,7 +34,7 @@ onMounted(() => {
               Mot du Directeur Général
             </h1>
             <div class="flex justify-center mb-3">
-              <div class="h-1.5 w-40 bg-white/70 rounded-full"></div>
+              <div class="h-1.5 w-40 bg-white/70 rounded-full" />
             </div>
             <p class="text-lg md:text-xl font-light opacity-95 max-w-3xl mx-auto">
               Découvrez le message inspirant de notre Directeur Général sur la vision et les engagements de la DGML
@@ -52,7 +52,7 @@ onMounted(() => {
           >
 
           <!-- Texte qui entoure l'image avec animation au scroll - TAILLES AJUSTÉES -->
-           <!-- first-letter:text-7xl md:first-letter:text-8xl first-letter:font-bold first-letter:text-[#0B5433] first-letter:mr-1 first-letter:float-left -->
+          <!-- first-letter:text-7xl md:first-letter:text-8xl first-letter:font-bold first-letter:text-[#0B5433] first-letter:mr-1 first-letter:float-left -->
           <div class="max-w-none text-justify leading-relaxed space-y-5 text-gray-800">
             <p class="text-2xl md:text-3xl font-medium scroll-reveal delay-0">
               <span class="first-letter:text-7xl md:first-letter:text-8xl first-letter:font-bold first-letter:text-[#0B5433] first-letter:mr-1 first-letter:float-left">C</span>hers collègues, clients, partenaires et citoyens,

@@ -3,38 +3,38 @@
 const decrets = ref([
   {
     id: 1,
-    numero: "Décret n°2023-429",
-    description: "portant modification des articles 15 et 16 du décret N°2018-385 du 29 août 2018 relatif aux modalités d’exercice des fonctions spécifiques des comptables des matières en République du Bénin.",
-    date: "26/07/23",
-    pdfUrl: "/documents/decrets/decret-2023-429.pdf"
+    numero: 'Décret n°2023-429',
+    description: 'portant modification des articles 15 et 16 du décret N°2018-385 du 29 août 2018 relatif aux modalités d’exercice des fonctions spécifiques des comptables des matières en République du Bénin.',
+    date: '26/07/23',
+    pdfUrl: '/documents/decrets/decret-2023-429.pdf'
   },
   {
     id: 2,
-    numero: "Décret n°2023-428",
-    description: "portant modalités d’inventaire des matières de l’Etat et des autres organismes soumis au règle de la comptabilité publique.",
-    date: "26/07/23",
-    pdfUrl: "/documents/decrets/decret-2023-428.pdf"
+    numero: 'Décret n°2023-428',
+    description: 'portant modalités d’inventaire des matières de l’Etat et des autres organismes soumis au règle de la comptabilité publique.',
+    date: '26/07/23',
+    pdfUrl: '/documents/decrets/decret-2023-428.pdf'
   },
   {
     id: 3,
-    numero: "Décret n°2021-511",
-    description: "portant réglementation de la gestion du parc des véhicules et autres équipements motorisés de l’État.",
-    date: "06/10/21",
-    pdfUrl: "/documents/decrets/decret-2021-511.pdf"
+    numero: 'Décret n°2021-511',
+    description: 'portant réglementation de la gestion du parc des véhicules et autres équipements motorisés de l’État.',
+    date: '06/10/21',
+    pdfUrl: '/documents/decrets/decret-2021-511.pdf'
   },
   {
     id: 4,
-    numero: "Décret n°2018-385",
-    description: "portant modalités d’exercice des fonctions spécifiques des comptables des matières en République du Bénin.",
-    date: "29/08/18",
-    pdfUrl: "/documents/decrets/decret-2018-385.pdf"
+    numero: 'Décret n°2018-385',
+    description: 'portant modalités d’exercice des fonctions spécifiques des comptables des matières en République du Bénin.',
+    date: '29/08/18',
+    pdfUrl: '/documents/decrets/decret-2018-385.pdf'
   },
   {
     id: 5,
-    numero: "Décret n°2017-108",
-    description: "portant comptabilité des matières en République du Bénin.",
-    date: "27/02/17",
-    pdfUrl: "/documents/decrets/decret-2017-108.pdf"
+    numero: 'Décret n°2017-108',
+    description: 'portant comptabilité des matières en République du Bénin.',
+    date: '27/02/17',
+    pdfUrl: '/documents/decrets/decret-2017-108.pdf'
   }
 ])
 
@@ -45,12 +45,12 @@ const searchQuery = ref('')
 // Filtrer les décrets par recherche
 const filteredDecrets = computed(() => {
   if (!searchQuery.value) return decrets.value
-  
+
   const query = searchQuery.value.toLowerCase()
-  return decrets.value.filter(doc => 
-    doc.numero.toLowerCase().includes(query) ||
-    doc.description.toLowerCase().includes(query) ||
-    doc.date.toLowerCase().includes(query)
+  return decrets.value.filter(doc =>
+    doc.numero.toLowerCase().includes(query)
+    || doc.description.toLowerCase().includes(query)
+    || doc.date.toLowerCase().includes(query)
   )
 })
 
@@ -68,16 +68,16 @@ const downloadDocument = async (doc) => {
   try {
     const response = await fetch(doc.pdfUrl)
     const blob = await response.blob()
-    
+
     const url = window.URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
     link.download = `${doc.numero}.pdf`
     link.style.display = 'none'
-    
+
     document.body.appendChild(link)
     link.click()
-    
+
     setTimeout(() => {
       document.body.removeChild(link)
       window.URL.revokeObjectURL(url)
@@ -100,8 +100,8 @@ useSeoMeta({
     <!-- Hero Section avec dégradé vert -->
     <div class="relative bg-gradient-to-br from-green-900 to-blue-900/70 dark:from-green-800 dark:via-green-900 dark:to-emerald-950 overflow-hidden pb-12">
       <!-- Motif décoratif -->
-      <div class="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"></div>
-      
+      <div class="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]" />
+
       <UContainer>
         <div class="relative py-16 text-center">
           <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
@@ -110,19 +110,25 @@ useSeoMeta({
           <p class="text-lg md:text-xl text-green-50 max-w-2xl mx-auto mb-8">
             Consultez et téléchargez l'ensemble des décrets en vigueur
           </p>
-          
+
           <div class="flex items-center justify-center gap-3 mb-8">
             <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full p-1.5 shadow-lg">
               <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-green-700 rounded-full font-semibold shadow-md">
-                <UIcon name="i-lucide-scroll-text" class="w-4 h-4" />
+                <UIcon
+                  name="i-lucide-scroll-text"
+                  class="w-4 h-4"
+                />
                 <span>Décrets</span>
               </div>
-              
+
               <NuxtLink
                 to="/documentheque/arretes"
                 class="inline-flex items-center gap-2 px-5 py-2.5 text-white hover:bg-white/20 rounded-full font-medium transition-all duration-200"
               >
-                <UIcon name="i-lucide-file-text" class="w-4 h-4" />
+                <UIcon
+                  name="i-lucide-file-text"
+                  class="w-4 h-4"
+                />
                 <span>Arrêtés</span>
               </NuxtLink>
             </div>
@@ -135,7 +141,7 @@ useSeoMeta({
               size="xl"
               placeholder="Rechercher par numéro, description ou date..."
               class="w-full"
-              :ui="{ 
+              :ui="{
                 icon: { trailing: { pointer: '' } },
                 base: 'shadow-2xl bg-white dark:bg-gray-800 border-0 ring-2 ring-white/20 hover:ring-white/40 transition-all duration-200 w-full'
               }"
@@ -176,7 +182,10 @@ useSeoMeta({
             <!-- En-tête avec icône et numéro -->
             <div class="flex items-start gap-4 mb-3">
               <div class="w-12 h-12 bg-gradient-to-br from-green-900 to-blue-900/70 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                <UIcon name="i-lucide-scroll-text" class="w-6 h-6 text-white" />
+                <UIcon
+                  name="i-lucide-scroll-text"
+                  class="w-6 h-6 text-white"
+                />
               </div>
 
               <div class="flex-1 min-w-0 pr-20">
@@ -249,9 +258,9 @@ useSeoMeta({
         @click.self="closeDocument"
       >
         <button
-          @click="closeDocument"
           class="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full transition-all duration-200 hover:scale-110"
           aria-label="Fermer"
+          @click="closeDocument"
         >
           <UIcon
             name="i-lucide-x"
