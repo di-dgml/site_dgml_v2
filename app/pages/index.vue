@@ -331,7 +331,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <NuxtLink
-                to="/plainte"
+                to="#"
                 class="flex flex-col items-center p-6 rounded-2xl bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-300 hover:scale-105 cursor-pointer group shadow-sm"
               >
                 <div class="bg-gradient-to-br from-red-500 to-red-700 p-5 rounded-2xl mb-4 group-hover:shadow-lg transition-shadow">
@@ -346,7 +346,7 @@
               </NuxtLink>
 
               <NuxtLink
-                to="/suggestion"
+                to="#"
                 class="flex flex-col items-center p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-all duration-300 hover:scale-105 cursor-pointer group shadow-sm"
               >
                 <div class="bg-gradient-to-br from-[#114b3d] to-[#061c4d] p-5 rounded-2xl mb-4 group-hover:shadow-lg transition-shadow">

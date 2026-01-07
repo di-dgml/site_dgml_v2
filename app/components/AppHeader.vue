@@ -32,7 +32,7 @@ const items = computed(() => [
   },
   {
     label: 'Documenthèque',
-    to: '/documentheque',
+    // to: '/documentheque',
     active: route.path.startsWith('/documentheque'),
     children: [
       {
@@ -51,27 +51,27 @@ const items = computed(() => [
     children: [
       {
         label: 'DPIB',
-        to: '/directions/dpib'
+        to: '#'
       },
       {
         label: 'DMCM',
-        to: '/directions/dmcm'
+        to: '#'
       },
       {
         label: 'DGCA',
-        to: '/directions/dgca'
+        to: '#'
       },
       {
         label: 'CERC',
-        to: '/directions/cerc'
+        to: '#'
       },
       {
         label: 'CCIQ',
-        to: '/directions/cciq'
+        to: '#'
       },
       {
         label: 'DI',
-        to: '/directions/di'
+        to: '#'
       }
     ]
   },
