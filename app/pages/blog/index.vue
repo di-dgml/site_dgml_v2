@@ -652,7 +652,7 @@ onMounted(() => {
       </div>
 
       <!-- Pagination Component -->
-      <Pagination
+      <PaginationComponent
         :current-page="currentPage"
         :total-pages="totalPages"
         @page-change="handlePageChange"
