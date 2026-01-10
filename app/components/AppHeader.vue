@@ -17,7 +17,7 @@ const items = computed(() => [
       },
       {
         label: 'Notre Equipe',
-        to: '/dgml/organigramme/'
+        to: '/dgml/notre-equipe/'
       },
       {
         label: 'Organigramme',

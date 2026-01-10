@@ -1,427 +1,552 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
 
-const expandedNodes = ref(new Set(['dgml', 'dgaml']))
+const expandedDirections = ref<Set<string>>(new Set());
 
-const toggleNode = (id: string) => {
-  if (expandedNodes.value.has(id)) {
-    expandedNodes.value.delete(id)
-  } else {
-    expandedNodes.value.add(id)
-  }
-}
-
-const isExpanded = (id: string) => expandedNodes.value.has(id)
-
+// Par défaut, toutes les directions sont ouvertes
 onMounted(() => {
-  // Observer pour l'animation au scroll
+  const allIds = ['cciq', 'cerc', 'dmcm', 'dpib', 'dgca', 'dgr', 'di', 'delegations'];
+  allIds.forEach(id => expandedDirections.value.add(id));
+
+  // Animations au scroll
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
+          entry.target.classList.add('is-visible');
         }
-      })
+      });
     },
-    {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
-  )
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
 
-  const elements = document.querySelectorAll('.scroll-reveal')
-  elements.forEach(el => observer.observe(el))
-})
+  const elements = document.querySelectorAll('.scroll-reveal');
+  elements.forEach((el) => observer.observe(el));
+});
 
-// Structure de l'organigramme
-const orgData = {
-  id: 'dgml',
-  name: 'Raoufou MAMAM',
-  title: 'Directeur Général du Matériel et de la Logistique',
-  subtitle: 'DGML',
-  image: 'https://www.dgml.bj/wp-content/uploads/2023/07/DGML2-768x768.jpg.webp',
-  children: [
-    {
-      id: 'dgaml',
-      name: 'À définir',
-      title: 'Directeur Général Adjoint',
-      subtitle: 'DGAML',
-      image: '',
-      children: [
-        {
-          id: 'cciq',
-          name: 'À définir',
-          title: 'Chef de la Cellule Contrôle Interne de la Qualité',
-          subtitle: 'CCIQ',
-          image: '',
-          children: []
-        },
-        {
-          id: 'cerc',
-          name: 'À définir',
-          title: 'Chef de la Cellule Études, Réformes et Contentieux',
-          subtitle: 'CERC',
-          image: '',
-          children: []
-        },
-        {
-          id: 'dmcm',
-          name: 'À définir',
-          title: 'Directeur du Matériel et Comptabilité',
-          subtitle: 'DMCM',
-          image: '',
-          children: []
-        },
-        {
-          id: 'dpib',
-          name: 'À définir',
-          title: 'Directeur du Patrimoine Immobilier',
-          subtitle: 'DPIB',
-          image: '',
-          children: []
-        },
-        {
-          id: 'dgca',
-          name: 'À définir',
-          title: 'Directeur du Garage Central',
-          subtitle: 'DGCA',
-          image: '',
-          children: []
-        },
-        {
-          id: 'dgr',
-          name: 'À définir',
-          title: 'Directeur Gestion des Ressources',
-          subtitle: 'DGR',
-          image: '',
-          children: []
-        },
-        {
-          id: 'di',
-          name: 'À définir',
-          title: "Directeur de l'Informatique",
-          subtitle: 'DI',
-          image: '',
-          children: []
-        }
-      ]
-    }
-  ]
-}
+const toggleDirection = (id: string) => {
+  if (expandedDirections.value.has(id)) {
+    expandedDirections.value.delete(id);
+  } else {
+    expandedDirections.value.add(id);
+  }
+};
 
-// Secrétariat directement rattaché au DGML (affiché à côté)
-const secretariat = {
-  id: 'secretariat-dgml',
-  name: 'À définir',
-  title: 'Secrétariat Particulier',
-  subtitle: 'Secrétariat DGML',
-  image: '',
-  children: []
-}
+const isDirectionExpanded = (id: string) => expandedDirections.value.has(id);
 
-const getBgColor = (level: number) => {
-  if (level === 0) return 'from-[#0B5433] to-[#3a6470]'
-  if (level === 1) return 'from-[#3a6470] to-[#5D73AD]'
-  if (level === 2) return 'from-[#5D73AD] to-[#7B8DC4]'
-  return 'from-gray-600 to-gray-700'
-}
-
-const getSize = (level: number) => {
-  if (level === 0) return { img: 'w-20 h-20', text: 'text-lg', card: 'p-6' }
-  if (level === 1) return { img: 'w-16 h-16', text: 'text-base', card: 'p-5' }
-  if (level === 2) return { img: 'w-14 h-14', text: 'text-sm', card: 'p-4' }
-  return { img: 'w-12 h-12', text: 'text-xs', card: 'p-3' }
-}
+const directions = [
+  {
+    id: 'cciq',
+    name: 'À définir',
+    title: 'Chef de la Cellule Contrôle Interne de la Qualité',
+    code: 'CCIQ',
+    color: 'purple',
+    type: 'Cellule',
+    image: '',
+    services: [
+      {
+        name: 'SMR - Service Maîtrise des Risques',
+        divisions: ['DMCR - Div. Cartographie Risques', 'DSR - Div. Surveillance et Revue']
+      },
+      {
+        name: 'SSRC - Service Suivi Normes Qualité',
+        divisions: ['DSN - Div. Suivi des Normes', 'DQ - Div. de la Qualité']
+      }
+    ]
+  },
+  {
+    id: 'cerc',
+    name: 'À définir',
+    title: 'Chef de la Cellule Études, Réformes et Contentieux',
+    code: 'CERC',
+    color: 'purple',
+    type: 'Cellule',
+    image: '',
+    services: [
+      {
+        name: 'SER - Service Études et Réformes',
+        divisions: ['DRGBA - Div. Réformes Bâtiments', 'DRCM - Div. Réformes Comptabilité', 'DRGEM - Div. Réformes Équipements']
+      },
+      {
+        name: 'SPC - Service Plaintes Contentieux',
+        divisions: []
+      }
+    ]
+  },
+  {
+    id: 'dmcm',
+    name: 'À définir',
+    title: 'Directeur du Matériel et de la Comptabilité des Matières',
+    code: 'DMCM',
+    color: 'green',
+    type: 'Direction',
+    image: '',
+    services: [
+      {
+        name: 'SGMM - Service Gestion Matériels et Mobiliers',
+        divisions: ['DAMM - Div. Acquisitions', 'DRMM - Div. Réforme']
+      },
+      {
+        name: 'SCM - Service Comptabilité Matières',
+        divisions: ['DSTCM - Div. Suivi Tenue Comptabilité', 'DInv - Div. des Inventaires', 'DFAT - Div. Formations Appui Technique']
+      },
+      {
+        name: 'SCCOCM - Service Contrôle Centralisation Opérations Comptables',
+        divisions: ['DCOCM - Div. Centralisation Opérations Comptables', 'DCCMCL - Div. Centralisation Comptes Matières Collectivités Locales', 'DCVGM - Div. Contrôle Vérification Gestion Matières']
+      }
+    ]
+  },
+  {
+    id: 'dpib',
+    name: 'À définir',
+    title: 'Directeur du Patrimoine Immobilier Bâti',
+    code: 'DPIB',
+    color: 'green',
+    type: 'Direction',
+    image: '',
+    services: [
+      {
+        name: 'STr - Service des Travaux',
+        divisions: ['DRBA - Div. Réfections Bâtiments Administratifs', 'DRL - Div. Réparations Locatives', 'DEAT - Div. Études et Appui Technique']
+      },
+      {
+        name: 'SBE - Service des Bâtiments de l\'État',
+        divisions: ['DGBE - Div. Gestion Bâtiments État', 'DPSE - Div. Prospection Sites État']
+      },
+      {
+        name: 'SBAL - Service des Baux Administratifs et Location',
+        divisions: ['DPBB - Div. Prise en Bail Bâtiments', 'DMBBE - Div. Mise en Bail Bâtiments État', 'DCBA - Div. Centralisation Baux Administratifs']
+      }
+    ]
+  },
+  {
+    id: 'dgca',
+    name: 'À définir',
+    title: 'Directeur du Garage Central Administratif',
+    code: 'DGCA',
+    color: 'green',
+    type: 'Direction',
+    image: '',
+    services: [
+      {
+        name: 'SET - Service des Études Techniques',
+        divisions: ['DES - Div. Études et Statistiques', 'DAL - Div. Acquisitions et Locations']
+      },
+      {
+        name: 'SPCA - Service du Parc Central Administratif',
+        divisions: ['DVPC - Div. Véhicules Parc Central', 'DSPSR - Div. Suivi Parcs Sectoriels et Réquisitions', 'DAEME - Div. Autres Équipements Motorisés État']
+      },
+      {
+        name: 'SM - Service de la Maintenance',
+        divisions: ['DMV DGML - Div. Maintenance Véhicules DGML', 'DMVS - Div. Maintenance Véhicules Sectoriels', 'DGAM - Div. Gestion Ateliers Maintenance']
+      },
+      {
+        name: 'SREM - Service des Réformes des Équipements Motorisés',
+        divisions: ['DEDR - Div. Étude Demandes Réforme', 'DA CNRVA - Div. Appui CNRVA']
+      },
+      {
+        name: 'SVTVA - Service des Visites Techniques des Véhicules Administratifs',
+        divisions: ['DCT - Div. Contrôles Techniques', 'DDDVT - Div. Délivrance Documents Visite Technique']
+      }
+    ]
+  },
+  {
+    id: 'dgr',
+    name: 'À définir',
+    title: 'Directeur de la Gestion des Ressources',
+    code: 'DGR',
+    color: 'green',
+    type: 'Direction',
+    image: '',
+    services: [
+      {
+        name: 'SAP - Service Administratif et du Personnel',
+        divisions: ['DSA - Div. Secrétariat Administratif', 'DRU/C - Div. Relations avec Usagers/Clients', 'DGP - Div. Gestion du Personnel']
+      },
+      {
+        name: 'SBC - Service du Budget et de la Comptabilité',
+        divisions: ['DPSEB - Div. Préparation et Suivi Exécution Budget', 'DDB - Div. Dépenses de Bâtiments', 'DDEM - Div. Dépenses Équipements Motorisés', 'DCPR - Div. Commandes Publiques et Recouvrement']
+      },
+      {
+        name: 'SGM - Service de la Gestion des Matières',
+        divisions: ['DM - Div. du Matériel', 'DSG - Div. Services Généraux']
+      },
+      {
+        name: 'RSA - Régie Spéciale d\'Avances',
+        divisions: ['Assistant', 'Billeteur']
+      }
+    ]
+  },
+  {
+    id: 'di',
+    name: 'À définir',
+    title: 'Directeur de l\'Informatique',
+    code: 'DI',
+    color: 'green',
+    type: 'Direction',
+    image: '',
+    services: [
+      {
+        name: 'SGLABD - Service du Génie Logiciel et Administration Bases de Données',
+        divisions: ['DED - Div. Études et Documentation', 'DD - Div. Développement']
+      },
+      {
+        name: 'SEON - Service de l\'Exploitation, Organisation et du Numérique',
+        divisions: ['DEF - Div. Études et Formations', 'DDS - Div. Déploiement et Support', 'DNI - Div. Numérique et Imprimerie']
+      },
+      {
+        name: 'SRSM - Service Réseau, Système et Maintenance',
+        divisions: ['DRM - Div. Réseau et Maintenance', 'DSST - Div. Système et Support Technique']
+      }
+    ]
+  },
+  {
+    id: 'delegations',
+    name: 'Délégations Départementales',
+    title: 'Délégations Départementales',
+    code: 'DD',
+    color: 'orange',
+    type: 'Délégations',
+    image: '',
+    services: [
+      {
+        name: 'Assistant 1',
+        divisions: ['Rang de Chef de Service']
+      },
+      {
+        name: 'Assistant 2',
+        divisions: ['Rang de Chef de Service']
+      }
+    ]
+  }
+];
 </script>
 
 <template>
-  <div class="animate-fade-in">
-    <UPageSection class="animate-slide-in-up pt-0">
-      <div class="max-w-7xl mx-auto px-4">
-        <!-- Header -->
-        <div class="text-center mb-12 scroll-reveal">
-          <!-- <div
-            class="inline-flex items-center gap-3 bg-gradient-to-r from-[#0B5433] to-[#5D73AD] text-white rounded-full px-6 py-3 shadow-lg mb-6">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <span class="text-sm font-semibold">Organisation</span>
-          </div> -->
-          <h1
-            class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0B5433] to-[#5D73AD] mb-4">
-            Notre Equipe
-          </h1>
-          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-            Direction Générale du Matériel et de la Logistique
-          </p>
+  <div class="min-h-screen bg-linear-to-br from-gray-50 via-blue-50 to-green-50">
+    <!-- En-tête en pleine largeur -->
+    <div class="relative overflow-hidden rounded-b-3xl scroll-reveal">
+      <!-- Background animé -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0B5433] via-[#3a6470] to-[#5D73AD] opacity-90"></div>
+      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+
+      <!-- Cercles décoratifs animés -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse"
+        style="animation-delay: 1s;"></div>
+
+      <!-- Contenu -->
+      <div class="relative z-10 py-16 px-8 text-center text-white">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-6 shadow-xl animate-fade-in-down">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 3v4M3 5h4M16 3v4m-2-2h4M7 13v4m-2-2h4m10-6v4m-2-2h4M7 21v-4m-2 2h4m10 0h-4m4 0v-4m0 4v4m0-4h-4" />
+          </svg>
         </div>
 
-        <!-- Organigramme -->
-        <div class="pb-8 scroll-reveal delay-200">
-          <div class="w-full">
-            <!-- Niveau 1: DGML (centré) -->
-            <div class="flex flex-col items-center mb-12">
-              <!-- DGML -->
+        <!-- Titre principal -->
+        <h1 class="text-xl md:text-6xl font-extrabold mb-4 tracking-tight animate-slide-in-up">
+          Organigramme
+        </h1>
+        <div class="w-32 h-2 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-6 rounded-full">
+        </div>
+        <p class="text-xl md:text-2xl font-light mb-2 opacity-95">
+          Direction Générale du Matériel et de la Logistique
+        </p>
+        <p class="text-sm md:text-base opacity-80 max-w-2xl mx-auto">
+          La structure organisationnelle complète de la DGML, incluant les directions,
+          services et divisions clés qui assurent notre mission.
+        </p>
+      </div>
+    </div>
+    <UContainer class="pb-10 pt-10">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Niveau DGML → SP + DGAML (même niveau) -->
+        <div class="flex flex-col items-center mb-12 scroll-reveal">
+          <!-- DGML en haut -->
+          <div
+            class="relative bg-white rounded-2xl shadow-2xl p-4 md:p-6 max-w-2xl w-full mb-6 transform hover:scale-105 transition-transform duration-300 mx-auto">
+            <div class="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#0B5433] to-[#3a6470] rounded-t-2xl"></div>
+            <div class="flex items-center gap-3 md:gap-4 mt-2">
               <div
-                :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(0).card, 'w-full max-w-[350px]']">
-                <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(0), 'rounded-t-xl']" />
+                class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-[#0B5433]/20 shadow-xl">
+                <img src="/img/DGML2-768x768-jpg.webp" alt="DGML" class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h2 class="text-lg md:text-2xl font-bold text-gray-800">Raoufou MAMAM</h2>
+                <p class="text-xs md:text-sm text-gray-600 font-medium">Directeur Général du Matériel et de la
+                  Logistique</p>
+                <p class="text-xs text-[#0B5433] font-bold mt-1">DGML</p>
+              </div>
+            </div>
+          </div>
 
-                <div class="flex items-start gap-4 mt-2">
-                  <div :class="[getSize(0).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                    <img :src="orgData.image || 'https://via.placeholder.com/150'" :alt="orgData.name"
-                      class="w-full h-full object-cover">
+          <!-- Connecteurs pour Desktop uniquement -->
+          <div class="hidden md:block relative w-full max-w-2xl h-16 mb-6">
+            <!-- Ligne verticale centrale vers bas -->
+            <div
+              class="absolute left-1/2 top-0 w-1 h-6 bg-gradient-to-b from-[#0B5433] to-[#5D73AD] rounded-full transform -translate-x-1/2">
+            </div>
+            <!-- Ligne horizontale vers la gauche uniquement -->
+            <div class="absolute left-0 top-6 w-1/2 h-1 bg-gradient-to-r from-gray-400 to-[#5D73AD] rounded-full"></div>
+            <!-- Ligne verticale gauche vers SP -->
+            <div class="absolute left-18 top-6 w-1 h-10 bg-gradient-to-b from-gray-400 to-gray-500 rounded-full"></div>
+            <!-- Ligne verticale centrale continue vers directions -->
+            <div
+              class="absolute left-1/2 top-6 w-1 h-60 bg-gradient-to-b from-[#5D73AD] to-[#3a6470] rounded-full transform -translate-x-1/2">
+            </div>
+          </div>
+
+          <!-- Connecteur mobile simple -->
+          <div class="md:hidden w-1 h-6 bg-gradient-to-b from-[#0B5433] to-[#5D73AD] rounded-full mb-4"></div>
+
+          <!-- Layout différent pour mobile et desktop -->
+          <div class="w-full max-w-2xl">
+            <!-- Desktop: SP à gauche, DGAML centré -->
+            <div class="hidden md:grid grid-cols-4 gap-6 relative">
+              <!-- SP - 1 colonne à gauche -->
+              <div
+                class="col-span-1 relative bg-white rounded-xl shadow-xl p-3 border-2 border-gray-200 transform hover:scale-105 transition-transform duration-300">
+                <div class="flex flex-col items-center text-center gap-2">
+                  <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-xl">
+                    📋
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-sm text-gray-800">Secrétariat Particulier</h3>
+                    <p class="text-xs text-gray-600 mt-1">du DGML</p>
+                    <p class="text-xs text-gray-500 font-semibold mt-1">SP DGML</p>
+                    <!-- <p class="text-xs text-gray-400 italic mt-1">Chef de Service</p> -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Espace vide -->
+              <div class="col-span-3"></div>
+
+              <!-- DGAML centré sur les 4 colonnes -->
+              <div class="col-span-4 flex justify-center mt-4">
+                <div
+                  class="relative bg-white rounded-xl shadow-xl p-5 transform hover:scale-105 transition-transform duration-300 w-full max-w-xl">
+                  <div class="absolute inset-x-0 top-0 h-2 bg-linear-to-r from-[#3a6470] to-[#5D73AD] rounded-t-xl">
+                  </div>
+                  <div class="flex items-center gap-4 mt-2">
+                    <div
+                      class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-[#0B5433]/20 shadow-xl">
+                      <img src="" alt="DGAML" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="font-bold text-xl text-gray-800">À définir</h3>
+                      <p class="text-sm text-gray-600 mt-1">Directeur Général Adjoint du Matériel et de la Logistique
+                      </p>
+                      <p class="text-xs text-[#5D73AD] font-bold mt-2">DGAML</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile: Stack vertical -->
+            <div class="md:hidden flex flex-col gap-4">
+              <!-- SP mobile -->
+              <div class="relative bg-white rounded-xl shadow-xl p-4 border-2 border-gray-200 mx-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-xl flex-shrink-0">
+                    📋
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-sm text-gray-800">Secrétariat Particulier</h3>
+                    <p class="text-xs text-gray-600">du DGML</p>
+                    <p class="text-xs text-gray-500 font-semibold mt-1">SP DGML</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Connecteur mobile -->
+              <div class="w-1 h-6 bg-gradient-to-b from-gray-400 to-[#5D73AD] rounded-full mx-auto"></div>
+
+              <!-- DGAML mobile -->
+              <div class="relative bg-white rounded-xl shadow-xl p-4 mx-4">
+                <div class="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#3a6470] to-[#5D73AD] rounded-t-xl">
+                </div>
+                <div class="flex items-center gap-3 mt-2">
+                  <div
+                    class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-[#0B5433]/20 shadow-xl">
+                    <img src="" alt="DGAML" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="font-bold text-base text-gray-800">À définir</h3>
+                    <p class="text-xs text-gray-600 mt-1">Directeur Général Adjoint</p>
+                    <p class="text-xs text-[#5D73AD] font-bold mt-1">DGAML</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ligne verticale vers directions (desktop seulement) -->
+          <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-[#3a6470] to-[#5D73AD] rounded-full mt-6"></div>
+
+          <!-- Ligne mobile vers directions -->
+          <div class="md:hidden w-1 h-6 bg-gradient-to-b from-[#5D73AD] to-[#3a6470] rounded-full mt-4"></div>
+        </div>
+
+        <!-- Directions, Cellules et Délégations -->
+        <div class="space-y-6">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div v-for="direction in directions" :key="direction.id"
+              class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group flex flex-col">
+              <!-- En-tête Direction -->
+              <div :class="[
+                'p-5 cursor-pointer relative overflow-hidden',
+                direction.color === 'purple' ? 'bg-gradient-to-br from-purple-600 to-purple-800' :
+                  direction.color === 'orange' ? 'bg-gradient-to-br from-orange-600 to-orange-800' :
+                    'bg-gradient-to-br from-green-600 to-green-800'
+              ]" @click="toggleDirection(direction.id)">
+                <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
+                <div class="relative flex items-start gap-3 text-white">
+                  <!-- Avatar / Icône -->
+                  <div class="shrink-0">
+                    <!-- Image : Direction & Cellules -->
+                    <div
+                      v-if="direction.color !== 'orange'"
+                      class="w-14 h-14 rounded-full overflow-hidden ring-4 ring-[#0B5433]/20 shadow-xl"
+                    >
+                      <img
+                        :src="direction.image"
+                        :alt="direction.name"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <!-- Icône : Délégations -->
+                    <div
+                      v-else
+                      class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg"
+                      aria-hidden="true"
+                    >
+                      <span class="text-2xl">🏛️</span>
+                    </div>
                   </div>
 
                   <div class="flex-1 min-w-0">
-                    <h3 :class="['font-bold text-gray-800', getSize(0).text, 'mb-1 line-clamp-2']">
-                      {{ orgData.name }}
-                    </h3>
-                    <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                      {{ orgData.title }}
-                    </p>
-                    <p v-if="orgData.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
-                      {{ orgData.subtitle }}
-                    </p>
+                    <div class="text-xs font-semibold opacity-90 mb-1">{{ direction.type }}</div>
+                    <h4 class="font-bold text-sm mb-1">{{ direction.name }}</h4>
+                    <p class="text-xs opacity-90 line-clamp-2 mb-2">{{ direction.title }}</p>
+                    <p class="text-xs font-black tracking-wide">{{ direction.code }}</p>
                   </div>
-                </div>
-
-                <button
-                  class="mt-3 w-full flex items-center justify-center gap-2 text-sm text-[#0B5433] hover:text-[#5D73AD] transition-colors py-2 border-t border-gray-100"
-                  @click="toggleNode(orgData.id)">
-                  <svg v-if="isExpanded(orgData.id)" class="w-4 h-4" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                  <svg
+                    :class="['w-6 h-6 transition-transform duration-300', isDirectionExpanded(direction.id) ? 'rotate-180' : '']"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
-                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span class="font-medium">
-                    {{ isExpanded(orgData.id) ? 'Masquer' : 'Voir' }} la structure
-                  </span>
-                </button>
+                </div>
               </div>
 
-              <!-- Ligne verticale vers DGAML -->
-              <div v-if="isExpanded(orgData.id)" class="w-0.5 h-12 bg-gradient-to-b from-gray-300 to-gray-400" />
-            </div>
+              <!-- Services et Divisions -->
+              <div v-if="isDirectionExpanded(direction.id)"
+                class="p-5 space-y-3 bg-gradient-to-br from-gray-50 to-white">
+                <div class="text-center text-xs font-bold text-gray-500 bg-gray-100 py-2 rounded-lg">SECRÉTARIAT</div>
 
-            <!-- Niveau 2: DGAML et Secrétariat (décalé) -->
-            <div v-if="isExpanded(orgData.id)" class="relative">
-              <!-- Conteneur principal -->
-              <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
-                <!-- Colonne gauche: Secrétariat (décalé vers le haut) -->
-                <div class="lg:w-1/4 flex flex-col items-center lg:items-end">
-                  <!-- Secrétariat DGML -->
-                  <div class="relative mb-8 lg:mb-0 lg:mt-[-80px]">
-                    <!-- Ligne diagonale du DGML vers le Secrétariat -->
-                    <div
-                      class="absolute top-[-50px] right-0 lg:top-[-40px] lg:right-[-120px] w-24 h-0.5 bg-gray-300 transform rotate-45 origin-right" />
-
-                    <!-- Carte Secrétariat (plus petite) -->
-                    <div
-                      :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', 'p-4', 'w-full max-w-[280px]']">
-                      <div
-                        :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-gray-500 to-gray-600', 'rounded-t-xl']" />
-
-                      <div class="flex items-start gap-3 mt-2">
-                        <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100">
-                          <img :src="secretariat.image || 'https://via.placeholder.com/150'" :alt="secretariat.name"
-                            class="w-full h-full object-cover">
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                          <h3 class="font-bold text-gray-800 text-sm mb-1 line-clamp-2">
-                            {{ secretariat.name }}
-                          </h3>
-                          <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                            {{ secretariat.title }}
-                          </p>
-                          <p v-if="secretariat.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
-                            {{ secretariat.subtitle }}
-                          </p>
-                        </div>
-                      </div>
+                <div v-for="(service, idx) in direction.services" :key="idx"
+                  class="bg-white rounded-lg border-l-4 p-3 shadow-sm hover:shadow-md transition-shadow" :class="direction.color === 'purple' ? 'border-purple-500' :
+                    direction.color === 'orange' ? 'border-orange-500' :
+                      'border-green-500'">
+                  <div class="font-bold text-xs mb-2" :class="direction.color === 'purple' ? 'text-purple-700' :
+                    direction.color === 'orange' ? 'text-orange-700' :
+                      'text-green-700'">
+                    {{ service.name }}
+                  </div>
+                  <div v-if="service.divisions.length > 0" class="space-y-1.5">
+                    <div v-for="(division, divIdx) in service.divisions" :key="divIdx"
+                      class="text-xs bg-gray-50 px-3 py-1.5 rounded border border-gray-200 hover:bg-gray-100 transition-colors">
+                      {{ division }}
                     </div>
                   </div>
                 </div>
-
-                <!-- Colonne centre: DGAML -->
-                <div class="lg:w-2/4 flex flex-col items-center">
-                  <!-- DGAML -->
-                  <div
-                    :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(1).card, 'w-full max-w-[320px] mb-8']">
-                    <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(1), 'rounded-t-xl']" />
-
-                    <div class="flex items-start gap-4 mt-2">
-                      <div :class="[getSize(1).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                        <img :src="orgData.children[0].image || 'https://via.placeholder.com/150'"
-                          :alt="orgData.children[0].name" class="w-full h-full object-cover">
-                      </div>
-
-                      <div class="flex-1 min-w-0">
-                        <h3 :class="['font-bold text-gray-800', getSize(1).text, 'mb-1 line-clamp-2']">
-                          {{ orgData.children[0].name }}
-                        </h3>
-                        <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                          {{ orgData.children[0].title }}
-                        </p>
-                        <p v-if="orgData.children[0].subtitle" class="text-xs text-gray-500 italic line-clamp-1">
-                          {{ orgData.children[0].subtitle }}
-                        </p>
-                      </div>
-                    </div>
-
-                    <button v-if="orgData.children[0].children && orgData.children[0].children.length > 0"
-                      class="mt-3 w-full flex items-center justify-center gap-2 text-sm text-[#0B5433] hover:text-[#5D73AD] transition-colors py-2 border-t border-gray-100"
-                      @click="toggleNode(orgData.children[0].id)">
-                      <svg v-if="isExpanded(orgData.children[0].id)" class="w-4 h-4" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                      <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                      <span class="font-medium">
-                        {{ isExpanded(orgData.children[0].id) ? 'Masquer' : 'Voir' }} {{
-                          orgData.children[0].children.length }} directions
-                      </span>
-                    </button>
-                  </div>
-
-                  <!-- Ligne vers les directions -->
-                  <div v-if="isExpanded(orgData.children[0].id)"
-                    class="w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-400" />
-                </div>
-
-                <!-- Colonne droite: espace vide pour équilibre -->
-                <div class="lg:w-1/4 hidden lg:block" />
               </div>
 
-              <!-- Niveau 3: Les 7 directions (sous DGAML) -->
+              <!-- Footer aligné en bas -->
               <div
-                v-if="isExpanded(orgData.children[0].id) && orgData.children[0].children && orgData.children[0].children.length > 0"
-                class="mt-8">
-                <!-- Ligne horizontale au-dessus des directions -->
-                <div class="flex justify-center mb-8">
-                  <div class="w-0.5 h-4 bg-gray-300" />
-                </div>
-
-                <!-- Grille des 7 directions -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  <!-- 6 directions sur 2 lignes -->
-                  <div v-for="(direction, index) in orgData.children[0].children.slice(0, 6)" :key="direction.id"
-                    class="flex justify-center">
-                    <!-- Ligne verticale vers chaque direction -->
-                    <div class="absolute top-[-20px] left-1/2 w-0.5 h-4 bg-gray-300 transform -translate-x-1/2" />
-
-                    <!-- Carte Direction -->
-                    <div
-                      :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 w-full', getSize(2).card]">
-                      <div :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(2), 'rounded-t-xl']" />
-
-                      <div class="flex items-start gap-3 mt-2">
-                        <div
-                          :class="[getSize(2).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                          <img :src="direction.image || 'https://via.placeholder.com/150'" :alt="direction.name"
-                            class="w-full h-full object-cover">
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                          <h3 :class="['font-bold text-gray-800', getSize(2).text, 'mb-1 line-clamp-2']">
-                            {{ direction.name }}
-                          </h3>
-                          <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                            {{ direction.title }}
-                          </p>
-                          <p v-if="direction.subtitle" class="text-xs text-gray-500 italic line-clamp-1">
-                            {{ direction.subtitle }}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- 7ème direction centrée en bas -->
-                  <div class="sm:col-span-2 lg:col-span-3 xl:col-span-4 flex justify-center mt-6">
-                    <div class="relative">
-                      <!-- Ligne verticale -->
-                      <div class="absolute top-[-20px] left-1/2 w-0.5 h-4 bg-gray-300 transform -translate-x-1/2" />
-
-                      <!-- Carte de la 7ème direction -->
-                      <div
-                        :class="['relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300', getSize(2).card, 'w-full max-w-[300px]']">
-                        <div
-                          :class="['absolute inset-x-0 top-0 h-2 bg-gradient-to-r', getBgColor(2), 'rounded-t-xl']" />
-
-                        <div class="flex items-start gap-3 mt-2">
-                          <div
-                            :class="[getSize(2).img, 'rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-100']">
-                            <img :src="orgData.children[0].children[6].image || 'https://via.placeholder.com/150'"
-                              :alt="orgData.children[0].children[6].name" class="w-full h-full object-cover">
-                          </div>
-
-                          <div class="flex-1 min-w-0">
-                            <h3 :class="['font-bold text-gray-800', getSize(2).text, 'mb-1 line-clamp-2']">
-                              {{ orgData.children[0].children[6].name }}
-                            </h3>
-                            <p class="text-xs text-gray-600 font-medium mb-1 line-clamp-2">
-                              {{ orgData.children[0].children[6].title }}
-                            </p>
-                            <p v-if="orgData.children[0].children[6].subtitle"
-                              class="text-xs text-gray-500 italic line-clamp-1">
-                              {{ orgData.children[0].children[6].subtitle }}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                class="px-4 py-3 text-center text-xs font-bold cursor-pointer hover:bg-gray-50 transition-colors border-t-2 mt-auto"
+                @click="toggleDirection(direction.id)" :class="direction.color === 'purple' ? 'text-purple-600 border-purple-200' :
+                  direction.color === 'orange' ? 'text-orange-600 border-orange-200' :
+                    'text-green-600 border-green-200'">
+                {{ isDirectionExpanded(direction.id) ? '▲ Masquer les détails' : `▼ ${direction.services.length}
+                service${direction.services.length > 1 ? 's' : ''}` }}
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Légende -->
-        <div class="max-w-4xl mx-auto mt-12 bg-white rounded-xl shadow-lg p-6 scroll-reveal delay-400">
-          <h3 class="text-lg font-bold text-gray-800 mb-4">
-            Légende
+        <!-- Légende améliorée -->
+        <div class="max-w-5xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-8 scroll-reveal delay-400">
+          <h3 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <svg class="w-6 h-6 text-[#0B5433]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Légende des couleurs
           </h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-3 bg-gradient-to-r from-[#0B5433] to-[#3a6470] rounded" />
-              <span class="text-sm text-gray-600">Direction Générale</span>
+
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div
+              class="justify-center align-middle flex flex-col items-center gap-2 p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#0B5433] to-[#3a6470] shadow-lg"></div>
+              <span class="text-xs font-bold text-gray-700 text-center">Directeur Générale</span>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-3 bg-gradient-to-r from-[#3a6470] to-[#5D73AD] rounded" />
-              <span class="text-sm text-gray-600">Direction Générale Adjointe</span>
+            <div
+              class=" justify-center align-middle flex flex-col items-center gap-2 p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#3a6470] to-[#5D73AD] shadow-lg"></div>
+              <span class="text-xs font-bold text-gray-700 text-center">Directeur Générale Adjointe</span>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-3 bg-gradient-to-r from-[#5D73AD] to-[#7B8DC4] rounded" />
-              <span class="text-sm text-gray-600">Directions Opérationnelles</span>
+            <div class="col-span-full lg:col-span-3 p-4 rounded-xl border border-gray-200 bg-gray-50">
+              <p class="text-center text-[11px] sm:text-xs font-semibold text-gray-600 mb-4 uppercase tracking-wide">
+                Rang de Direction opérationnelle
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="flex flex-col items-center gap-2 p-3 sm:p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-300/50">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 shadow-lg"></div>
+                  <span class="text-[11px] sm:text-xs font-bold text-gray-700 text-center">Cellules</span>
+                </div>
+                <div
+                  class="flex flex-col items-center gap-2 p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-300/50">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-green-800 shadow-lg"></div>
+                  <span class="text-xs font-bold text-gray-700 text-center">Directions</span>
+                </div>
+                <div
+                  class="flex flex-col items-center gap-2 p-4 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-300/50">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-600 to-orange-800 shadow-lg"></div>
+                  <span class="text-xs font-bold text-gray-700 text-center">Délégations</span>
+                </div>
+              </div>
+
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-3 bg-gradient-to-r from-gray-500 to-gray-600 rounded" />
-              <span class="text-sm text-gray-600">Secrétariat</span>
-            </div>
+
           </div>
         </div>
       </div>
-    </UPageSection>
+    </UContainer>
   </div>
 </template>
 
 <style scoped>
-.animate-fade-in {
-  animation: fadeIn 1.2s ease-in-out;
+.animate-fade-in-down {
+  animation: fadeInDown 1s ease-out;
 }
 
 .animate-slide-in-up {
-  animation: slideInUp 1s ease-out;
+  animation: slideInUp 1.2s ease-out;
 }
 
-/* Animation de révélation au scroll */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -441,13 +566,15 @@ const getSize = (level: number) => {
   transition-delay: 0.4s;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInDown {
   from {
     opacity: 0;
+    transform: translateY(-30px);
   }
 
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -463,12 +590,11 @@ const getSize = (level: number) => {
   }
 }
 
-/* Styles pour les cartes */
-.line-clamp-1 {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 .line-clamp-2 {
@@ -476,42 +602,5 @@ const getSize = (level: number) => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* Lignes de connexion */
-.connection-line {
-  position: relative;
-}
-
-.connection-line::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  width: 2px;
-  height: 20px;
-  background: #d1d5db;
-  transform: translateX(-50%);
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .lg\:mt-\[-80px\] {
-    margin-top: -40px;
-  }
-
-  .lg\:right-\[-120px\] {
-    right: -60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .grid-cols-1.sm\:grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .sm\:col-span-2 {
-    grid-column: span 1;
-  }
 }
 </style>

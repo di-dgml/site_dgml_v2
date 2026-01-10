@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="animate-fade-in -mt-25 -mb-25">
+  <div class="animate-fade-in -mt-10 -mb-10 md:-mt-25 md:-mb-25">
     <UPageSection class="animate-slide-in-up">
       <div class="mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
         <!-- Header avec dégradé centré -->
@@ -46,9 +46,15 @@ onMounted(() => {
         <div class="p-6 md:p-12">
           <!-- Image flottante à gauche -->
           <img
-            src="/img/DGML2-768x768.jpg.webp"
+            src="/img/DGML2-768x768-jpg.webp"
             alt="Raoufou MAMAM"
-            class="float-left w-56 h-56 md:w-72 md:h-72 object-cover rounded-2xl shadow-2xl mr-7 md:mr-9 mb-7 animate-float border-4 border-white ring-4 ring-green-100"
+            class="
+              mx-auto mb-6
+              w-72 h-72
+              md:float-left md:mx-0 md:mr-9 md:mb-7
+              object-cover rounded-2xl shadow-2xl
+              animate-float border-4 border-white ring-4 ring-green-100
+            "
           >
 
           <!-- Texte qui entoure l'image avec animation au scroll - TAILLES AJUSTÉES -->
@@ -57,7 +63,7 @@ onMounted(() => {
             <p class="text-2xl md:text-3xl font-medium first-letter:text-4xl md:first-letter:text-6xl first-letter:font-bold first-letter:text-[#0B5433] first-letter:mr-1 first-letter:float-left first-letter:leading-none scroll-reveal delay-0">
               Chers collègues, clients, partenaires et citoyens,
             </p>
-            <br>
+            <br class="hidden md:block">
             <p class="text-lg md:text-xl scroll-reveal delay-100">
               C'est un honneur pour moi de m'adresser à vous en tant que Directeur Général du Matériel et de la Logistique du Ministère de l'Économie et des Finances du Bénin.
             </p>
